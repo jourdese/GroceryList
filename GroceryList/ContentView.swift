@@ -3,13 +3,14 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: Model Context
+//  CommitName: SwiftData Query
 
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @Query private var items: [Item]
     
     var body: some View {
         VStack {
