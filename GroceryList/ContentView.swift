@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: Deleting Data
+//  CommitName: Updating Data
 
 import SwiftUI
 import SwiftData
@@ -38,6 +38,12 @@ struct ContentView: View {
                             Label("Delete", systemImage: "trash")
                         }
                     }
+                        .swipeActions(edge: .leading) {
+                            Button("Done", systemImage: item.isCompleted == false ? "checkmark.circle" :"x.circle") {
+                                item.isCompleted.toggle()
+                            }
+                            .tint(item.isCompleted == false ? .green : .accentColor)
+                        }
                 }
             }
             .navigationBarTitle("Grocery List")
