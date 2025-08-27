@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: Sample Data
+//  CommitName: User Interface
 
 import SwiftUI
 import SwiftData
@@ -17,6 +17,11 @@ struct ContentView: View {
             List{
                 ForEach(items) { item in
                     Text(item.title)
+                        .font(.title.weight(.light))
+                        .padding(.vertical,2)
+                        .foregroundStyle(item.isCompleted == false ? Color.primary : Color.accentColor)
+                        .strikethrough(item.isCompleted)
+                        .italic(item.isCompleted)
                 }
             }
             .navigationBarTitle("Grocery List")
