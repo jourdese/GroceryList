@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: Toolbar Button
+//  CommitName: Deleting Data
 
 import SwiftUI
 import SwiftData
@@ -30,15 +30,25 @@ struct ContentView: View {
                         .foregroundStyle(item.isCompleted == false ? Color.primary : Color.accentColor)
                         .strikethrough(item.isCompleted)
                         .italic(item.isCompleted)
+                        .swipeActions {Button(role: .destructive){
+                            withAnimation {
+                                modelContext.delete(item)
+                            }
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
                 }
             }
             .navigationBarTitle("Grocery List")
             .toolbar {
                 if items.isEmpty {
-                    Button {
-                        addEssentialFoods()
-                    } label: {
-                        Label("Essentials", systemImage: "plus")
+                    ToolbarItem(placement: .topBarTrailing){
+                        Button {
+                            addEssentialFoods()
+                        } label: {
+                            Label("Essentials", systemImage: "carrot")
+                        }
                     }
                 }
             }
