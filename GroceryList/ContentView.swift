@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: User Interface
+//  CommitName: Swipe Actions
 
 import SwiftUI
 import SwiftData
@@ -11,6 +11,14 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    
+    func addEssentialFoods() {
+        modelContext.insert(Item(title: "Milk", isCompleted: false))
+        modelContext.insert(Item(title: "Bread", isCompleted: true))
+        modelContext.insert(Item(title: "Cheese", isCompleted: false))
+        modelContext.insert(Item(title: "Pasta", isCompleted: Bool.random()))
+        modelContext.insert(Item(title: "Soda", isCompleted: Bool.random()))
+    }
     
     var body: some View {
         NavigationStack {
