@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: Swipe Actions
+//  CommitName: Toolbar Button
 
 import SwiftUI
 import SwiftData
@@ -33,6 +33,15 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Grocery List")
+            .toolbar {
+                if items.isEmpty {
+                    Button {
+                        addEssentialFoods()
+                    } label: {
+                        Label("Essentials", systemImage: "plus")
+                    }
+                }
+            }
             .overlay {
                 if items.isEmpty {
                     ContentUnavailableView("Empty Cart", systemImage: "cart.circle", description: Text("Add some items to the shopping cart."))
