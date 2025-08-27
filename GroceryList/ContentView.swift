@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: User Interface
+//  CommitName: User Experience
 
 import SwiftUI
 import SwiftData
@@ -20,6 +20,11 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Grocery List")
+            .overlay {
+                if items.isEmpty {
+                    ContentUnavailableView("Empty Cart", systemImage: "cart.circle", description: Text("Add some items to the shopping cart."))
+                }
+            }
         }
     }
 }
