@@ -60,7 +60,11 @@ struct ContentView: View {
                         }
                     }
                 }
-
+            }
+            .overlay {
+                if items.isEmpty {
+                    ContentUnavailableView("Empty Cart", systemImage: "cart.circle", description: Text("Add some items to the shopping cart."))
+                }
             }
             .safeAreaInset(edge: .bottom){
                 VStack(spacing: 12) {
@@ -88,11 +92,6 @@ struct ContentView: View {
                 }
                 .padding()
                 .background(.bar)
-            }
-            .overlay {
-                if items.isEmpty {
-                    ContentUnavailableView("Empty Cart", systemImage: "cart.circle", description: Text("Add some items to the shopping cart."))
-                }
             }
         }
     }
