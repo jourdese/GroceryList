@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: Saving Data
+//  CommitName: User Interface
 
 import SwiftUI
 import SwiftData
@@ -62,17 +62,27 @@ struct ContentView: View {
 
             }
             .safeAreaInset(edge: .bottom){
-                VStack {
+                VStack(spacing: 12) {
                     TextField("", text: $item)
-                        .textFieldStyle(.roundedBorder)
+                        .textFieldStyle(.plain)
+                        .padding(12)
+                        .background(.tertiary)
+                        .cornerRadius(12)
+                        .font(.title.weight(.light))
                     Button {
                         let newItem = Item(title: item, isCompleted: false)
                         modelContext.insert(newItem)
                     }label: {
                         Text("Save")
+                            .font(.title2.weight(.medium))
+                            .frame(maxWidth: .infinity)
                     }
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle)
+                    .controlSize(.extraLarge)
                 }
                 .padding()
+                .background(.bar)
             }
             .overlay {
                 if items.isEmpty {
