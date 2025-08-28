@@ -13,6 +13,7 @@ struct ContentView: View {
     @Query private var items: [Item]
     
     @State private var item: String = ""
+    @FocusState private var isFocused: Bool
     
     func addEssentialFoods() {
         modelContext.insert(Item(title: "Milk", isCompleted: false))
@@ -69,11 +70,13 @@ struct ContentView: View {
                         .background(.tertiary)
                         .cornerRadius(12)
                         .font(.title.weight(.light))
+                        .focused($isFocused)
                     Button {
                         guard !item.isEmpty else { return }
                         let newItem = Item(title: item, isCompleted: false)
                         modelContext.insert(newItem)
                         item = ""
+                        isFocused = false
                     }label: {
                         Text("Save")
                             .font(.title2.weight(.medium))
