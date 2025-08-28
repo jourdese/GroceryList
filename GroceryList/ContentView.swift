@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: Updating Data
+//  CommitName: Saving Data
 
 import SwiftUI
 import SwiftData
@@ -11,6 +11,8 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    
+    @State private var item: String = ""
     
     func addEssentialFoods() {
         modelContext.insert(Item(title: "Milk", isCompleted: false))
@@ -57,6 +59,20 @@ struct ContentView: View {
                         }
                     }
                 }
+
+            }
+            .safeAreaInset(edge: .bottom){
+                VStack {
+                    TextField("", text: $item)
+                        .textFieldStyle(.roundedBorder)
+                    Button {
+                        let newItem = Item(title: item, isCompleted: false)
+                        modelContext.insert(newItem)
+                    }label: {
+                        Text("Save")
+                    }
+                }
+                .padding()
             }
             .overlay {
                 if items.isEmpty {
