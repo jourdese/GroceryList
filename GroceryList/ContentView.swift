@@ -3,10 +3,11 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: User Interface
+//  CommitName: TipKit implementation
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -14,6 +15,12 @@ struct ContentView: View {
     
     @State private var item: String = ""
     @FocusState private var isFocused: Bool
+    
+    let buttonTip = ButtonTip()
+    
+    init() {
+        try? Tips.configure()
+    }
     
     func addEssentialFoods() {
         modelContext.insert(Item(title: "Milk", isCompleted: false))
@@ -56,8 +63,9 @@ struct ContentView: View {
                         Button {
                             addEssentialFoods()
                         } label: {
-                            Label("Essentials", systemImage: "carrot")
+                            Image(systemName: "carrot")
                         }
+                        .popoverTip(buttonTip)
                     }
                 }
             }
