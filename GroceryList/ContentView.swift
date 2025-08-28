@@ -70,8 +70,10 @@ struct ContentView: View {
                         .cornerRadius(12)
                         .font(.title.weight(.light))
                     Button {
+                        guard !item.isEmpty else { return }
                         let newItem = Item(title: item, isCompleted: false)
                         modelContext.insert(newItem)
+                        item = ""
                     }label: {
                         Text("Save")
                             .font(.title2.weight(.medium))
