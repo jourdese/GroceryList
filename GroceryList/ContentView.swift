@@ -3,7 +3,7 @@
 //  GroceryList
 //
 //  Created by Jourdese Palacio on 8/27/25.
-//  CommitName: TipKit implementation
+//  CommitName: TipKit Configuration
 
 import SwiftUI
 import SwiftData
@@ -18,8 +18,18 @@ struct ContentView: View {
     
     let buttonTip = ButtonTip()
     
+    func setUpTips() {
+        do {
+            try Tips.resetDatastore()
+            Tips.showAllTipsForTesting()
+            try Tips.configure([.displayFrequency(.immediate)])
+        } catch {
+            print("Error initializing Tip  \(error.localizedDescription)")
+        }
+    }
+    
     init() {
-        try? Tips.configure()
+        setUpTips( )
     }
     
     func addEssentialFoods() {
